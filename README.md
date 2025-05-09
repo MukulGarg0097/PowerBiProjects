@@ -1,4 +1,4 @@
-# # 🏥 Hospital Waiting List Dashboard – Inpatient & Outpatient Analysis
+# 🏥 Hospital Waiting List Dashboard – Inpatient & Outpatient Analysis
 
 This Power BI dashboard provides a comprehensive analysis of inpatient and outpatient waiting lists for a hospital during the years 2019 and 2020. It enables healthcare administrators and policy makers to monitor patient demand, waiting list trends, and capacity planning.
 
