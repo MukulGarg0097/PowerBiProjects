@@ -52,10 +52,9 @@ This Power BI dashboard provides a comprehensive analysis of inpatient and outpa
 
 ## 🖼️ Screenshots
 
-![Dashboard 3](https://github.com/user-attachments/assets/ad986594-fbf7-4d46-ae39-466e6407957d)
-![Dashboard 2](https://github.com/user-attachments/assets/9d01cff4-15b8-47d0-9681-333050441947)
 ![Dashboard 1](https://github.com/user-attachments/assets/d6f7b198-467e-46fa-9ef5-6ae019da5763)
-
+![Dashboard 2](https://github.com/user-attachments/assets/9d01cff4-15b8-47d0-9681-333050441947)
+![Dashboard 3](https://github.com/user-attachments/assets/ad986594-fbf7-4d46-ae39-466e6407957d)
 
 ## 👨‍⚕️ Potential Use Cases
 
