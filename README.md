@@ -1,68 +1,119 @@
-# 🏥 Hospital Waiting List Dashboard – Inpatient & Outpatient Analysis
 
-This Power BI dashboard provides a comprehensive analysis of inpatient and outpatient waiting lists for a hospital during the years 2018 and 2021. It enables healthcare administrators and policy makers to monitor patient demand, waiting list trends, and capacity planning.
+# 🏥 Hospital Waiting List Dashboard (2018–2021)
 
-## 📊 Dashboard Features
+A Power BI-based interactive dashboard that analyzes hospital waiting list trends for both **inpatients** and **outpatients** over four years (2018–2021). The dashboard supports decision-making by helping stakeholders track the **current status**, explore **historical trends**, and conduct **granular analysis** by specialty and age profile.
 
-- 📅 Time-based analysis for 2018 and 2021
-- 📈 Trends in waiting list size over time
-- 🏥 Breakdown by care type: **Inpatient** vs **Outpatient**
-- 📍 Filtering options by:
-  - Month
-  - Region (if applicable)
-  - Department or treatment category (if available in data)
-- ✅ Key performance indicators (KPIs):
-  - Total patients on waiting list
-  - Monthly growth rates
-  - Average wait times (if provided)
+## 🎯 Objective
 
-## 📁 Dataset Overview
+- Track current status of hospital patient waiting lists
+- Analyze monthly trends in inpatient and outpatient data
+- Deep-dive into specialties and age profiles
+- Provide a dynamic summary and detailed visual views for all stakeholders
 
-- **Files**:
-  - `IN_WL 2018.csv` – Inpatient waiting list data for 2018
-  - `IN_WL 2019.csv` – Inpatient waiting list data for 2019
-  - `IN_WL 2020.csv` – Inpatient waiting list data for 2020
-  - `IN_WL 2021.csv` – Inpatient waiting list data for 2021
-  - `Op_WL 2018.csv` – Outpatient waiting list data for 2018
-  - `Op_WL 2019.csv` – Outpatient waiting list data for 2019
-  - `Op_WL 2020.csv` – Outpatient waiting list data for 2020
-  - `Op_WL 2021.csv` – Outpatient waiting list data for 2021
-- **Key Fields** (based on expected structure):
-  - `Month`, `Patient Type`, `Waiting List Count`, `Treatment Category`, `Region`
-- **Data Purpose**: Understand healthcare service load and patient wait dynamics
+## 🗃️ Data Scope
 
-## 🛠️ Tools & Technologies
+- **Years Covered**: 2018 to 2021
+- **Data Type**: Inpatient & Outpatient waiting list statistics
+- **Metrics**:
+  - Total Patients on Wait List
+  - Average & Median Wait List Sizes
+  - Age Profile & Time Band Classification
+  - Specialty-level Aggregation
 
-- **Visualization Tool**: Microsoft Power BI
-- **Data Format**: CSV
-- **Processing**: Data cleaning and transformation in Power Query (inside PBIX)
+## 📁 Dataset Files
 
-## ▶️ How to View Dashboard
+- `IN_WL 2019.csv` – Year 2019 data
+- `IN_WL 2020.csv` – Year 2020 data
+- *(Other years assumed to follow similar structure)*
 
-1. Install [Power BI Desktop](https://powerbi.microsoft.com/desktop/).
-2. Open the `Bi Project.pbix` file.
-3. Refresh the data if necessary to reflect updates.
-4. Use slicers and filters to explore by month, year, and patient type.
+## 🔗 Data Integration
+
+Data is imported into Power BI using the **Folder Connector**, which supports dynamic refreshes as files in the folder are updated. This enables automation and scalable deployment.
+
+Supported data connectors in Power BI (used or available for future extension):
+
+- CSV / Excel
+- Folder
+- SQL Server / Any RDBMS
+- Power BI Services
+- SharePoint, Web APIs, JSON
+- Cloud platforms (Azure, AWS, GCP)
+
+## 🛠️ Data Transformation Process
+
+Performed using **Power Query Editor** in Power BI:
+
+- Renamed columns for consistency across datasets
+- Rearranged columns and standardized structure
+- Appended inpatient and outpatient tables into a unified `All_Data` table
+- Cleaned redundant or inconsistent values (e.g., `"18+ months"` vs `"18 month +"`)
+- Used `Trim`, `Replace`, `Custom Columns` for data cleanup
+- Integrated with a **Specialty Mapping** table for grouping categories
+
+## 📐 Data Modelling
+
+- Created relationships between `All_Data` and `Specialty Mapping` tables
+- Modeled using `Case_Type`, `Specialty_Name`, `Age_Profile`, and `Time_Band`
+- Enabled efficient slicers and filters across visuals
+
+## 📊 Visualization Blueprint
+
+### 🔹 Summary Page
+
+- Key KPIs: Latest Month Wait List, Previous Year Comparison
+- Dynamic Chart Titles (Average vs Median)
+- Charts:
+  - Doughnut Chart (Case Type Split)
+  - Clustered Column Chart (Top Specialties)
+  - Line Chart (Trend over Time)
+- Slicers for `Archive_Date`, `Specialty`, and `Case_Type`
+
+### 🔹 Detailed Page
+
+- Matrix Table: `Archive_Date`, `Specialty_Name`, `Age_Profile`, `Time_Band`, and `Total`
+- Tooltip Page for enhanced hover insights
+
+### 🔹 Interactivity & UX Enhancements
+
+- Calculation method slicer (Average vs Median)
+- Dynamic titles and chart visibility
+- Custom tooltip page integration
+- Clean layout using background images and color themes from Adobe Color
+
+## 🧮 Measures (DAX Examples)
+
+```DAX
+Latest Month Wait List = CALCULATE(SUM(All_Data[Total]), All_Data[Archive_Date] = MAX(All_Data[Archive_Date])) + 0
+
+PY Latest Month Wait List = CALCULATE(SUM(All_Data[Total]), All_Data[Archive_Date] = EDATE(MAX(All_Data[Archive_Date]), -12)) + 0
+
+Median Wait List = MEDIAN(All_Data[Total])
+Average Wait List = AVERAGE(All_Data[Total])
+
+Avg/Med Wait List = SWITCH(VALUES('Calculation Method'[Calc Method]), "Average", [Average Wait List], "Median", [Median Wait List])
+```
 
 ## 📌 Key Insights (Example)
 
-- Significant increase in outpatient waiting lists in Q2 2020 (possibly due to pandemic delays)
-- Consistent inpatient demand across both years with seasonal spikes
-- Department-wise bottlenecks in certain months
+- Significant waitlist spikes in early 2020—correlated with pandemic disruptions
+- Specialty-level disparities in patient load
+- Outpatient demand more volatile than inpatient
 
-## 🖼️ Screenshots
+## ✅ Testing & Deployment
 
-![Dashboard 1](https://github.com/user-attachments/assets/d6f7b198-467e-46fa-9ef5-6ae019da5763)
-![Dashboard 2](https://github.com/user-attachments/assets/9d01cff4-15b8-47d0-9681-333050441947)
-![Dashboard 3](https://github.com/user-attachments/assets/ad986594-fbf7-4d46-ae39-466e6407957d)
+- UAT conducted to validate data accuracy and interactivity
+- Row-Level Security (RLS) implemented for secure sharing via Power BI Service
+- Regular refresh enabled via folder-based data source
 
-## 👨‍⚕️ Potential Use Cases
+## 📷 Screenshots
 
-- Hospital resource planning
-- Waiting list reduction strategy monitoring
-- Government/public health reporting
+*(Optional: Upload and embed visuals of key dashboard views here)*
 
-## 🧑‍💻 Author
+## 👤 Author
 
-- **Your Name** – [@your-github](https://github.com/mukulgarg0097)
+- **Your Name**
+- [GitHub Profile](https://github.com/mukulgarg0097)
 
+## 📄 License
+
+This project is open-source under the MIT License.
