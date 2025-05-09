@@ -107,11 +107,14 @@ Avg/Med Wait List = SWITCH(VALUES('Calculation Method'[Calc Method]), "Average",
 
 ## 📷 Screenshots
 
-*(Optional: Upload and embed visuals of key dashboard views here)*
+![Dashboard 1](https://github.com/user-attachments/assets/46c7c3b4-82c5-4282-a99e-e63db4b146a1)
+![Dashboard 2](https://github.com/user-attachments/assets/08485530-6a68-4007-891c-4ae87e1c440d)
+<img width="1425" alt="Dashboard 3" src="https://github.com/user-attachments/assets/518ad1f5-575c-4384-8064-1a6c257b1caf" />
+
 
 ## 👤 Author
 
-- **Your Name**
+- **Mukul Garg**
 - [GitHub Profile](https://github.com/mukulgarg0097)
 
 ## 📄 License
